@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    // ------------------------------
+    // Daugiau editinau pacio car controller skripta
+    //         |
+    //         \/
+
     public PrometeoCarController controller;
 
     void Start()
