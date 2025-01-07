@@ -265,7 +265,6 @@ public class PrometeoCarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
       //CAR DATA
 
       // We determine the speed of the car.
@@ -731,7 +730,7 @@ public class PrometeoCarController : MonoBehaviour
     // This function is used to recover the traction of the car when the user has stopped using the car's handbrake.
     public void RecoverTraction(){
       isTractionLocked = false;
-      driftingAxis = driftingAxis - (Time.deltaTime / 1.5f);
+        driftingAxis = driftingAxis - (Time.deltaTime / 1.5f);
       if(driftingAxis < 0f){
         driftingAxis = 0f;
       }
