@@ -9,7 +9,6 @@ public class Controller : MonoBehaviour
 
     public float forwardAcceleration = 10f;
     public float reverseAcceleration = 5f;
-    public float maxSpeed = 50f;
     public float turnAngle = 200f;
     public float gravityForce = 10f;
     public float dragOnGround = 3f;
@@ -27,8 +26,8 @@ public class Controller : MonoBehaviour
     public Transform wheelFR;
     public float maxWheelTurn = 45f;
 
-    bool jump;
     public float jumpStrength = 2;
+    bool canJump = true;
 
     void Start()
     {
@@ -41,10 +40,9 @@ public class Controller : MonoBehaviour
         turnInput = 0;
         if (Input.GetAxis("Vertical") > 0) speedInput = Input.GetAxis("Vertical") * forwardAcceleration * 1000f;
         else if (Input.GetAxis("Vertical") < 0) speedInput = Input.GetAxis("Vertical") * reverseAcceleration * 1000f;
-        else if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) && canJump)
         {
-            onGround = false;
-            jump = true;
+            canJump = false;
             rb.AddForce(Vector3.up * jumpStrength * 100f);
         }
 
@@ -69,7 +67,7 @@ public class Controller : MonoBehaviour
         if(Physics.Raycast(groundRay.position, -transform.up, out hit, groundRayLength, ground))
         {
             onGround = true;
-            jump = false;
+            canJump = true;
 
             transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
             rb.transform.rotation = transform.rotation;
