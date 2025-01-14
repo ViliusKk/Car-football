@@ -27,6 +27,9 @@ public class Controller : MonoBehaviour
     public Transform wheelFR;
     public float maxWheelTurn = 45f;
 
+    bool jump;
+    public float jumpStrength = 2;
+
     void Start()
     {
         rb.transform.parent = null;
@@ -38,6 +41,12 @@ public class Controller : MonoBehaviour
         turnInput = 0;
         if (Input.GetAxis("Vertical") > 0) speedInput = Input.GetAxis("Vertical") * forwardAcceleration * 1000f;
         else if (Input.GetAxis("Vertical") < 0) speedInput = Input.GetAxis("Vertical") * reverseAcceleration * 1000f;
+        else if (Input.GetKey(KeyCode.Space))
+        {
+            onGround = false;
+            jump = true;
+            rb.AddForce(Vector3.up * jumpStrength * 100f);
+        }
 
         turnInput = Input.GetAxis("Horizontal");
 
@@ -60,6 +69,7 @@ public class Controller : MonoBehaviour
         if(Physics.Raycast(groundRay.position, -transform.up, out hit, groundRayLength, ground))
         {
             onGround = true;
+            jump = false;
 
             transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
             rb.transform.rotation = transform.rotation;
