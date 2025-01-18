@@ -55,6 +55,8 @@ public class Controller : MonoBehaviour
         wheelFR.localRotation = Quaternion.Euler(wheelFR.localRotation.eulerAngles.x, turnInput * maxWheelTurn, wheelFR.localRotation.eulerAngles.z);
 
         transform.position = rb.transform.position;
+
+        if (boost < 0) boost = 0;
     }
 
     void FixedUpdate()
@@ -92,7 +94,7 @@ public class Controller : MonoBehaviour
         if(Input.GetKey(KeyCode.LeftShift) && boost > 0)
         {
             rb.AddForce(transform.forward * (speedInput+boostStrength));
-            boost -= Time.deltaTime * 10;
+            boost -= Time.deltaTime * 60;
         }
     }
 }
