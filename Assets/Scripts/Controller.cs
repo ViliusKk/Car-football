@@ -29,6 +29,9 @@ public class Controller : MonoBehaviour
     public float jumpStrength = 2;
     bool canJump = true;
 
+    public float boost = 100f;
+    public float boostStrength = 15f;
+
     void Start()
     {
         rb.transform.parent = null;
@@ -40,11 +43,6 @@ public class Controller : MonoBehaviour
         turnInput = 0;
         if (Input.GetAxis("Vertical") > 0) speedInput = Input.GetAxis("Vertical") * forwardAcceleration * 1000f;
         else if (Input.GetAxis("Vertical") < 0) speedInput = Input.GetAxis("Vertical") * reverseAcceleration * 1000f;
-        if (Input.GetKey(KeyCode.Space) && canJump)
-        {
-            canJump = false;
-            rb.AddForce(Vector3.up * jumpStrength * 100f);
-        }
 
         turnInput = Input.GetAxis("Horizontal");
 
@@ -85,6 +83,16 @@ public class Controller : MonoBehaviour
         {
             rb.drag = 0.1f;
             rb.AddForce(Vector3.up * -gravityForce * 100f);
+        }
+        if (Input.GetKey(KeyCode.Space) && canJump)
+        {
+            canJump = false;
+            rb.AddForce(Vector3.up * jumpStrength * 100f);
+        }
+        if(Input.GetKey(KeyCode.LeftShift) && boost > 0)
+        {
+            rb.AddForce(transform.forward * (speedInput+boostStrength));
+            boost -= Time.deltaTime * 10;
         }
     }
 }
