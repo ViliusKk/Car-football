@@ -57,6 +57,7 @@ public class Controller : MonoBehaviour
         transform.position = rb.transform.position;
 
         if (boost < 0) boost = 0;
+        else if (boost > 100f) boost = 100f;
     }
 
     void FixedUpdate()
