@@ -29,10 +29,13 @@ public class Controller : MonoBehaviour
 
     public float boost = 100f;
     public float boostStrength = 15f;
+    AudioSource carSound;
+    private bool carSoundPlayed;
 
     void Start()
     {
         rb.transform.parent = null;
+        carSound = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -78,6 +81,16 @@ public class Controller : MonoBehaviour
             if (Mathf.Abs(speedInput) > 0)
             {
                 rb.AddForce(transform.forward * speedInput);
+                if (!carSoundPlayed)
+                {
+                    carSound.Play();
+                    carSoundPlayed = true;
+                }
+            }
+            else
+            {
+                carSoundPlayed = false;
+                carSound.Pause();
             }
         }
         else
