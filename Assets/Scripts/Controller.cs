@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Controller : MonoBehaviour
@@ -85,12 +83,12 @@ public class Controller : MonoBehaviour
         else
         {
             rb.drag = 0.1f;
-            rb.AddForce(Vector3.up * -gravityForce * 100f);
+            rb.AddForce(Vector3.up * (-gravityForce * 100f));
         }
         if (Input.GetKey(KeyCode.Space) && canJump)
         {
             canJump = false;
-            rb.AddForce(Vector3.up * jumpStrength * 100f);
+            rb.AddForce(Vector3.up * (jumpStrength * 100f));
         }
         if(Input.GetKey(KeyCode.LeftShift) && boost > 0)
         {

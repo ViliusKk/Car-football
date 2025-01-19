@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BoostPad : MonoBehaviour
 {
     public Controller player;
-    public float timer = 0;
+    public float timer;
     public bool boostReady;
 
     void Start()
@@ -26,11 +24,11 @@ public class BoostPad : MonoBehaviour
             }
         }
     }
-    void OnCollisionEnter(Collision collision)
+
+    void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.name.Contains("ube"))
+        if (other.gameObject.name.Contains("Cube"))
         {
-            print("yes");
             if(boostReady)
             {
                 player.boost += 15f;
