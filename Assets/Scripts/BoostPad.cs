@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BoostPad : MonoBehaviour
 {
-    public Controller player;
+    public Boosting boosting;
     public float timer;
     public bool boostReady;
 
@@ -31,7 +31,7 @@ public class BoostPad : MonoBehaviour
         {
             if(boostReady)
             {
-                player.boost += 15f;
+                boosting.boost += 15f;
                 boostReady = false;
             }
         }

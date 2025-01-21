@@ -3,7 +3,6 @@ using UnityEngine;
 public class Controller : MonoBehaviour
 {
     public Rigidbody rb;
-    public GameObject carModel;
 
     public float forwardAcceleration = 10f;
     public float reverseAcceleration = 5f;
@@ -27,8 +26,7 @@ public class Controller : MonoBehaviour
     public float jumpStrength = 2;
     bool canJump = true;
 
-    public float boost = 100f;
-    public float boostStrength = 15f;
+    public Boosting boosting;
     
     public AudioSource carSound;
     public AudioSource boostSound;
@@ -59,9 +57,6 @@ public class Controller : MonoBehaviour
         wheelFR.localRotation = Quaternion.Euler(wheelFR.localRotation.eulerAngles.x, turnInput * maxWheelTurn, wheelFR.localRotation.eulerAngles.z);
 
         transform.position = rb.transform.position;
-
-        if (boost < 0) boost = 0;
-        else if (boost > 100f) boost = 100f;
     }
 
     void FixedUpdate()
@@ -106,10 +101,10 @@ public class Controller : MonoBehaviour
             canJump = false;
             rb.AddForce(Vector3.up * (jumpStrength * 100f));
         }
-        if(Input.GetKey(KeyCode.LeftShift) && boost > 0)
+        if(Input.GetKey(KeyCode.LeftShift) && boosting.boost > 0)
         {
-            rb.AddForce(transform.forward * (speedInput+boostStrength));
-            boost -= Time.deltaTime * 60;
+            rb.AddForce(transform.forward * (speedInput+boosting.boostStrength));
+            boosting.boost -= Time.deltaTime * 60;
             if (!boostSoundPlayed)
             {
                 boostSound.Play();
