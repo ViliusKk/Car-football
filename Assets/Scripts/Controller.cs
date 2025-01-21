@@ -46,11 +46,8 @@ public class Controller : MonoBehaviour
         else if (Input.GetAxis("Vertical") < 0) speedInput = Input.GetAxis("Vertical") * reverseAcceleration * 1000f;
 
         turnInput = Input.GetAxis("Horizontal");
-
-        if (onGround)
-        {
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnAngle * Time.deltaTime * Input.GetAxis("Vertical"), 0f));
-        }
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnAngle * Time.deltaTime * Input.GetAxis("Vertical"), 0f));
+        
 
         wheelFL.localRotation = Quaternion.Euler(wheelFL.localRotation.eulerAngles.x, turnInput * maxWheelTurn, wheelFL.localRotation.eulerAngles.z);
         wheelFR.localRotation = Quaternion.Euler(wheelFR.localRotation.eulerAngles.x, turnInput * maxWheelTurn, wheelFR.localRotation.eulerAngles.z);
