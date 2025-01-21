@@ -29,7 +29,6 @@ public class Controller : MonoBehaviour
     public Boosting boosting;
     
     public AudioSource carSound;
-    public AudioSource boostSound;
     private bool carSoundPlayed;
     bool boostSoundPlayed;
 
@@ -107,14 +106,16 @@ public class Controller : MonoBehaviour
             boosting.boost -= Time.deltaTime * 60;
             if (!boostSoundPlayed)
             {
-                boostSound.Play();
+                boosting.boostSound.Play();
                 boostSoundPlayed = true;
             }
+            boosting.ActivateParticles();
         }
         else
         {
-            boostSound.Stop();
+            boosting.boostSound.Stop();
             boostSoundPlayed = false;
+            boosting.DeactivateParticles();
         }
     }
 }
