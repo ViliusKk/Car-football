@@ -3,12 +3,14 @@ using UnityEngine;
 public class BoostPad : MonoBehaviour
 {
     public Boosting boosting;
+    AudioSource boostTaken;
     public float timer;
     public bool boostReady;
 
     void Start()
     {
         boostReady = true;
+        boostTaken = GetComponent<AudioSource>();
     }
 
 
@@ -33,6 +35,7 @@ public class BoostPad : MonoBehaviour
             {
                 boosting.boost += 15f;
                 boostReady = false;
+                boostTaken.Play();
             }
         }
     }

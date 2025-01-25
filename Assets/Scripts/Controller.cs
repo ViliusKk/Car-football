@@ -35,7 +35,6 @@ public class Controller : MonoBehaviour
     void Start()
     {
         rb.transform.parent = null;
-        carSound = GetComponent<AudioSource>();
     }
 
     void Update()
