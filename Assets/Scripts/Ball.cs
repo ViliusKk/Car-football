@@ -3,6 +3,7 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     public bool kickBall;
+    public Transform bot;
     AudioSource ballHit;
     Rigidbody rb;
     void Start()
@@ -24,7 +25,7 @@ public class Ball : MonoBehaviour
         if (kickBall)
         {
             rb.AddForce(transform.up * 2000f);
-            rb.AddForce(transform.forward * 7000f);
+            rb.AddForce(bot.transform.forward * 7000f);
         }
     }
 }

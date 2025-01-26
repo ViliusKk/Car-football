@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,6 +9,8 @@ public class Bot : MonoBehaviour
     public Ball ballScript;
     NavMeshAgent agent;
     //public Transform goalTarget;
+
+    float timer;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -14,6 +18,7 @@ public class Bot : MonoBehaviour
 
     void Update()
     {
+        timer += Time.deltaTime;
         float distance = Vector3.Distance(transform.position, ballTarget.position);
         
         agent.SetDestination(ballTarget.position);
@@ -21,6 +26,14 @@ public class Bot : MonoBehaviour
         {
             ballScript.kickBall = true;
         }
-        else ballScript.kickBall = false;
+        else
+        {
+            ballScript.kickBall = false;
+        }
+        // if (ballScript.kickBall && timer >= 0.6f)
+        // {
+        //     ballScript.kickBall = false;
+        //     timer = 0f;
+        // }
     }
 }
