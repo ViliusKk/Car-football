@@ -6,6 +6,7 @@ public class BoostPad : MonoBehaviour
     AudioSource boostTaken;
     public float timer;
     public bool boostReady;
+    public float boostAmount = 15f;
 
     void Start()
     {
@@ -33,7 +34,7 @@ public class BoostPad : MonoBehaviour
         {
             if(boostReady)
             {
-                boosting.boost += 15f;
+                boosting.boost += boostAmount;
                 boostReady = false;
                 boostTaken.Play();
             }
