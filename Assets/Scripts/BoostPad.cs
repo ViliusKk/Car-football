@@ -7,6 +7,7 @@ public class BoostPad : MonoBehaviour
     public float timer;
     public bool boostReady;
     public float boostAmount = 15f;
+    public float boostTime = 5f;
 
     void Start()
     {
@@ -20,7 +21,7 @@ public class BoostPad : MonoBehaviour
         if(!boostReady)
         {
             timer += Time.deltaTime;
-            if(timer >= 7)
+            if(timer >= boostTime)
             {
                 boostReady = true;
                 timer = 0;

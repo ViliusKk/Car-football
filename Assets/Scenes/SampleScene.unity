@@ -1024,6 +1024,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1048726836}
     - target: {fileID: 4809980958313148911, guid: b3c15a87bb00c4b77aa1808c71910721, type: 3}
+      propertyPath: boostTime
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4809980958313148911, guid: b3c15a87bb00c4b77aa1808c71910721, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -2200,6 +2204,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1048726836}
     - target: {fileID: 4809980958313148911, guid: b3c15a87bb00c4b77aa1808c71910721, type: 3}
+      propertyPath: boostTime
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4809980958313148911, guid: b3c15a87bb00c4b77aa1808c71910721, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -2425,6 +2433,10 @@ PrefabInstance:
       propertyPath: boosting
       value: 
       objectReference: {fileID: 1048726836}
+    - target: {fileID: 4809980958313148911, guid: b3c15a87bb00c4b77aa1808c71910721, type: 3}
+      propertyPath: boostTime
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4809980958313148911, guid: b3c15a87bb00c4b77aa1808c71910721, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -2837,6 +2849,10 @@ PrefabInstance:
       propertyPath: boosting
       value: 
       objectReference: {fileID: 1048726836}
+    - target: {fileID: 4809980958313148911, guid: b3c15a87bb00c4b77aa1808c71910721, type: 3}
+      propertyPath: boostTime
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4809980958313148911, guid: b3c15a87bb00c4b77aa1808c71910721, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -3282,6 +3298,10 @@ PrefabInstance:
       propertyPath: boosting
       value: 
       objectReference: {fileID: 1048726836}
+    - target: {fileID: 4809980958313148911, guid: b3c15a87bb00c4b77aa1808c71910721, type: 3}
+      propertyPath: boostTime
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4809980958313148911, guid: b3c15a87bb00c4b77aa1808c71910721, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -4395,6 +4415,10 @@ PrefabInstance:
       propertyPath: boosting
       value: 
       objectReference: {fileID: 1048726836}
+    - target: {fileID: 4809980958313148911, guid: b3c15a87bb00c4b77aa1808c71910721, type: 3}
+      propertyPath: boostTime
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4809980958313148911, guid: b3c15a87bb00c4b77aa1808c71910721, type: 3}
       propertyPath: m_Enabled
       value: 1
