@@ -5325,8 +5325,9 @@ MonoBehaviour:
   playerScoreText: {fileID: 1187868019}
   botScoreText: {fileID: 244812570}
   ball: {fileID: 1842498512}
-  ballRb: {fileID: 1842498508}
   player: {fileID: 1048726833}
+  ballRb: {fileID: 1842498508}
+  playerRb: {fileID: 863199201}
   bot: {fileID: 2011501344}
 --- !u!4 &1595469682
 Transform:
