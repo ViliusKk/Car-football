@@ -12,6 +12,8 @@ public class Gamemanager : MonoBehaviour
     public TMP_Text botScoreText;
     public TMP_Text scoreText;
     public TMP_Text countDownText;
+    public TMP_Text timerText;
+    public TMP_Text gameOverText;
     public Transform ball;
     public Transform player;
     public Rigidbody ballRb;
