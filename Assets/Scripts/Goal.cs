@@ -2,31 +2,22 @@ using UnityEngine;
 
 public class Goal : MonoBehaviour
 {
-    public bool playerSide;
-    public bool botScored;
-    public bool playerScored;
-
+    public bool scored;
+    public int score;
 
     private float timer;
     void Start()
     {
-        botScored = false;
-        playerScored = false;
+        scored = false;
+        score = 0;
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name.Contains("Ball"))
         {
-            if (!playerSide)
-            {
-                playerScored = true;
-                print("good");
-            }
-            else
-            {
-                botScored = true;
-            }
+            score++;
+            scored = true;
         }
     }
 }
