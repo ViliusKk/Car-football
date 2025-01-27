@@ -54,9 +54,9 @@ public class Controller : MonoBehaviour
 
             wheelFL.localRotation = Quaternion.Euler(wheelFL.localRotation.eulerAngles.x, turnInput * maxWheelTurn, wheelFL.localRotation.eulerAngles.z);
             wheelFR.localRotation = Quaternion.Euler(wheelFR.localRotation.eulerAngles.x, turnInput * maxWheelTurn, wheelFR.localRotation.eulerAngles.z);
-
-            transform.position = rb.transform.position;
+            
         }
+        transform.position = rb.transform.position;
     }
 
     void FixedUpdate()

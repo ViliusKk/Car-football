@@ -23,6 +23,7 @@ public class Bot : MonoBehaviour
         {
             agent.SetDestination(ballTarget.position);
         }
+        else agent.SetDestination(transform.position);
         
         if (distance <= 8f)
         {

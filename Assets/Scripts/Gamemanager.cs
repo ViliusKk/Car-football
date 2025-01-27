@@ -1,6 +1,5 @@
 using System;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Gamemanager : MonoBehaviour
@@ -12,6 +11,7 @@ public class Gamemanager : MonoBehaviour
     public TMP_Text playerScoreText;
     public TMP_Text botScoreText;
     public TMP_Text scoreText;
+    public TMP_Text countDownText;
     public Transform ball;
     public Transform player;
     public Rigidbody ballRb;
@@ -20,11 +20,14 @@ public class Gamemanager : MonoBehaviour
     public Transform bot;
     public bool canMove;
 
+    AudioSource countdown;
     private float timer;
     private bool startTimer;
-    private float startGameTimer;
+    private float startCountdownTimer;
+    private float reverseTimer = 3.2f;
     void Start()
     {
+        countdown = GetComponent<AudioSource>();
         SpawnPosition();
         playerScoreText.text = botSide.score.ToString();
         botScoreText.text = playerSide.score.ToString();
@@ -32,8 +35,26 @@ public class Gamemanager : MonoBehaviour
     }
     void Update()
     {
-        startGameTimer += Time.deltaTime;
-        if (startGameTimer >= 3f) canMove = true;
+        startCountdownTimer += Time.deltaTime;
+        reverseTimer -= Time.deltaTime;
+        if (startCountdownTimer >= 3f)
+        {
+            canMove = true;
+            ResetBot();
+        }
+
+        if (countDownText.enabled)
+        {
+            countDownText.text = Convert.ToInt32(reverseTimer).ToString();
+        }
+
+        if (canMove)
+        {
+            startCountdownTimer = 0;
+            reverseTimer = 3.5f;
+            countDownText.gameObject.SetActive(false);
+        }
+        
         if (startTimer)
         {
             timer += Time.deltaTime;
@@ -86,19 +107,29 @@ public class Gamemanager : MonoBehaviour
 
     void SpawnPosition()
     {
+        canMove = false;
         playerRb.transform.position = new Vector3(380f, 0.85f, 288.85f);
         player.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
         boostScript.boost = 30f;
-        bot.transform.position = new Vector3(269f, 0.85f, 288.85f);
-        bot.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
-        ball.transform.position = new Vector3(324.85f, 1.65f, 289f);
+        ResetBot();
         ballRb.velocity = new Vector3(0f, 0f, 0f);
         ballRb.angularVelocity = new Vector3(0f, 0f, 0f);
+        
+        countDownText.gameObject.SetActive(true);
+        countdown.Play();
+        ResetPlayer();
     }
 
     void ResetPlayer()
     {
         playerRb.transform.position = new Vector3(380f, 0.85f, 288.85f);
         player.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
+    }
+
+    void ResetBot()
+    {
+        bot.transform.position = new Vector3(269f, 0.85f, 288.85f);
+        bot.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+        ball.transform.position = new Vector3(324.85f, 1.65f, 289f);
     }
 }
