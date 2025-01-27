@@ -1,10 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using TMPro;
 using UnityEngine;
 
 public class Gamemanager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Boosting boostScript;
+    public TMP_Text boostText;
     void Start()
     {
         
@@ -13,6 +14,6 @@ public class Gamemanager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        boostText.text = Convert.ToInt32(boostScript.boost).ToString();
     }
 }
