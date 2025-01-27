@@ -96,7 +96,7 @@ public class Controller : MonoBehaviour
             canJump = false;
             rb.AddForce(Vector3.up * (jumpStrength * 100f));
         }
-        if(Input.GetKey(KeyCode.LeftShift) && boosting.boost > 0)
+        if(Input.GetKey(KeyCode.LeftShift) && boosting.boost > 0 && speedInput > 0)
         {
             rb.AddForce(transform.forward * (speedInput+boosting.boostStrength));
             boosting.boost -= Time.deltaTime * 60;

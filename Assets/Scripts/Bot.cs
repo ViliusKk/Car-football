@@ -7,18 +7,17 @@ public class Bot : MonoBehaviour
 {
     public Transform ballTarget;
     public Ball ballScript;
+    public Rigidbody playerRb;
+    Rigidbody rb;
     NavMeshAgent agent;
-    //public Transform goalTarget;
-
-    float timer;
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
     }
 
     void Update()
     {
-        timer += Time.deltaTime;
         float distance = Vector3.Distance(transform.position, ballTarget.position);
         
         agent.SetDestination(ballTarget.position);
@@ -30,10 +29,14 @@ public class Bot : MonoBehaviour
         {
             ballScript.kickBall = false;
         }
-        // if (ballScript.kickBall && timer >= 0.6f)
-        // {
-        //     ballScript.kickBall = false;
-        //     timer = 0f;
-        // }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name.Contains("Cube"))
+        {
+            playerRb.AddExplosionForce(2000f, transform.position, 100f, 0f, ForceMode.Impulse);
+            rb.AddExplosionForce(13000f, playerRb.transform.position, 100f, 0f, ForceMode.Impulse);
+        }
     }
 }

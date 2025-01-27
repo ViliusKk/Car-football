@@ -14,6 +14,7 @@ public class Gamemanager : MonoBehaviour
     public Transform player;
     public Rigidbody ballRb;
     public Rigidbody playerRb;
+    public Rigidbody botRb;
     public Transform bot;
 
     private float timer;
@@ -33,6 +34,9 @@ public class Gamemanager : MonoBehaviour
         boostText.text = Convert.ToInt32(boostScript.boost).ToString();
         if (playerSide.scored)
         {
+            botRb.AddExplosionForce(100f, playerSide.transform.position, 100f, 0f, ForceMode.Impulse);
+            playerRb.AddExplosionForce(100f, playerSide.transform.position, 100f, 0f, ForceMode.Impulse);
+            
             botScoreText.text = playerSide.score.ToString();
             startTimer = true;
             if (timer >= 3)
@@ -45,6 +49,9 @@ public class Gamemanager : MonoBehaviour
         }
         else if (botSide.scored)
         {
+            botRb.AddExplosionForce(100f, botSide.transform.position, 100f, 0f, ForceMode.Impulse);
+            playerRb.AddExplosionForce(100f, botSide.transform.position, 100f, 0f, ForceMode.Impulse);
+            
             playerScoreText.text = botSide.score.ToString();
             startTimer = true;
             if (timer >= 3)
@@ -55,17 +62,28 @@ public class Gamemanager : MonoBehaviour
                 botSide.scored = false;
             }
         }
+
+        if (Input.GetKey(KeyCode.R))
+        {
+            ResetPlayer();
+        }
     }
 
     void SpawnPosition()
     {
         playerRb.transform.position = new Vector3(380f, 0.85f, 288.85f);
         player.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
+        boostScript.boost = 30f;
         bot.transform.position = new Vector3(269f, 0.85f, 288.85f);
         bot.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
         ball.transform.position = new Vector3(324.85f, 1.65f, 289f);
         ballRb.velocity = new Vector3(0f, 0f, 0f);
         ballRb.angularVelocity = new Vector3(0f, 0f, 0f);
-        print("spawn position");
+    }
+
+    void ResetPlayer()
+    {
+        playerRb.transform.position = new Vector3(380f, 0.85f, 288.85f);
+        player.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
     }
 }
