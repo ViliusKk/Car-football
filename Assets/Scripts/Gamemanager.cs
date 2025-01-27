@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Gamemanager : MonoBehaviour
@@ -10,6 +11,7 @@ public class Gamemanager : MonoBehaviour
     public TMP_Text boostText;
     public TMP_Text playerScoreText;
     public TMP_Text botScoreText;
+    public TMP_Text scoreText;
     public Transform ball;
     public Transform player;
     public Rigidbody ballRb;
@@ -24,6 +26,7 @@ public class Gamemanager : MonoBehaviour
         SpawnPosition();
         playerScoreText.text = botSide.score.ToString();
         botScoreText.text = playerSide.score.ToString();
+        //scoreText.gameObject.SetActive(false);
     }
     void Update()
     {
@@ -38,6 +41,9 @@ public class Gamemanager : MonoBehaviour
             playerRb.AddExplosionForce(100f, playerSide.transform.position, 100f, 0f, ForceMode.Impulse);
             
             botScoreText.text = playerSide.score.ToString();
+            scoreText.text = "Bot scored!";
+            scoreText.gameObject.SetActive(true);
+            
             startTimer = true;
             if (timer >= 3)
             {
@@ -45,6 +51,7 @@ public class Gamemanager : MonoBehaviour
                 SpawnPosition();
                 startTimer = false;
                 playerSide.scored = false;
+                scoreText.gameObject.SetActive(false);
             }
         }
         else if (botSide.scored)
@@ -53,6 +60,9 @@ public class Gamemanager : MonoBehaviour
             playerRb.AddExplosionForce(100f, botSide.transform.position, 100f, 0f, ForceMode.Impulse);
             
             playerScoreText.text = botSide.score.ToString();
+            scoreText.text = "You scored!";
+            scoreText.gameObject.SetActive(true);
+            
             startTimer = true;
             if (timer >= 3)
             {
@@ -60,6 +70,7 @@ public class Gamemanager : MonoBehaviour
                 SpawnPosition();
                 startTimer = false;
                 botSide.scored = false;
+                scoreText.gameObject.SetActive(false);
             }
         }
 
