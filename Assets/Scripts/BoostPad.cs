@@ -40,5 +40,9 @@ public class BoostPad : MonoBehaviour
                 boostTaken.Play();
             }
         }
+        else if (other.gameObject.name.Contains("Bot"))
+        {
+            if (boostReady) boostReady = false;
+        }
     }
 }
