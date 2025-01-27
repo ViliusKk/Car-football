@@ -1,5 +1,3 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,6 +6,7 @@ public class Bot : MonoBehaviour
     public Transform ballTarget;
     public Ball ballScript;
     public Rigidbody playerRb;
+    public Gamemanager gamemanager;
     Rigidbody rb;
     NavMeshAgent agent;
     void Start()
@@ -19,8 +18,12 @@ public class Bot : MonoBehaviour
     void Update()
     {
         float distance = Vector3.Distance(transform.position, ballTarget.position);
+
+        if (gamemanager.canMove)
+        {
+            agent.SetDestination(ballTarget.position);
+        }
         
-        agent.SetDestination(ballTarget.position);
         if (distance <= 8f)
         {
             ballScript.kickBall = true;

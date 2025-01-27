@@ -3702,6 +3702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dfd3762e0edf4ff3af4856cc4ac05c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gamemanager: {fileID: 1595469681}
   rb: {fileID: 863199201}
   forwardAcceleration: 5
   reverseAcceleration: 4
@@ -3955,7 +3956,7 @@ NavMeshObstacle:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1048726831}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
   m_Extents: {x: 1, y: 1, z: 2.5}
@@ -7232,6 +7233,7 @@ MonoBehaviour:
   ballTarget: {fileID: 1842498512}
   ballScript: {fileID: 1842498514}
   playerRb: {fileID: 863199201}
+  gamemanager: {fileID: 1595469681}
 --- !u!54 &2011501343 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 5135156708204615449, guid: 79d0ca8b77e301442afdb49f102e8aed, type: 3}

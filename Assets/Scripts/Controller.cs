@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
+    public Gamemanager gamemanager;
+    
     public Rigidbody rb;
 
     public float forwardAcceleration = 10f;
@@ -41,17 +43,20 @@ public class Controller : MonoBehaviour
     {
         speedInput = 0;
         turnInput = 0;
-        if (Input.GetAxis("Vertical") > 0) speedInput = Input.GetAxis("Vertical") * forwardAcceleration * 1000f;
-        else if (Input.GetAxis("Vertical") < 0) speedInput = Input.GetAxis("Vertical") * reverseAcceleration * 1000f;
+        if (gamemanager.canMove)
+        {
+            if (Input.GetAxis("Vertical") > 0) speedInput = Input.GetAxis("Vertical") * forwardAcceleration * 1000f;
+            else if (Input.GetAxis("Vertical") < 0) speedInput = Input.GetAxis("Vertical") * reverseAcceleration * 1000f;
 
-        turnInput = Input.GetAxis("Horizontal");
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnAngle * Time.deltaTime * Input.GetAxis("Vertical"), 0f));
+            turnInput = Input.GetAxis("Horizontal");
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnAngle * Time.deltaTime * Input.GetAxis("Vertical"), 0f));
         
 
-        wheelFL.localRotation = Quaternion.Euler(wheelFL.localRotation.eulerAngles.x, turnInput * maxWheelTurn, wheelFL.localRotation.eulerAngles.z);
-        wheelFR.localRotation = Quaternion.Euler(wheelFR.localRotation.eulerAngles.x, turnInput * maxWheelTurn, wheelFR.localRotation.eulerAngles.z);
+            wheelFL.localRotation = Quaternion.Euler(wheelFL.localRotation.eulerAngles.x, turnInput * maxWheelTurn, wheelFL.localRotation.eulerAngles.z);
+            wheelFR.localRotation = Quaternion.Euler(wheelFR.localRotation.eulerAngles.x, turnInput * maxWheelTurn, wheelFR.localRotation.eulerAngles.z);
 
-        transform.position = rb.transform.position;
+            transform.position = rb.transform.position;
+        }
     }
 
     void FixedUpdate()

@@ -18,18 +18,22 @@ public class Gamemanager : MonoBehaviour
     public Rigidbody playerRb;
     public Rigidbody botRb;
     public Transform bot;
+    public bool canMove;
 
     private float timer;
     private bool startTimer;
+    private float startGameTimer;
     void Start()
     {
         SpawnPosition();
         playerScoreText.text = botSide.score.ToString();
         botScoreText.text = playerSide.score.ToString();
-        //scoreText.gameObject.SetActive(false);
+        canMove = false;
     }
     void Update()
     {
+        startGameTimer += Time.deltaTime;
+        if (startGameTimer >= 3f) canMove = true;
         if (startTimer)
         {
             timer += Time.deltaTime;
