@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Gamemanager : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class Gamemanager : MonoBehaviour
     private bool startTimer;
     private float startCountdownTimer;
     private float reverseTimer = 3.2f;
-    private float gameTimer = 10f;
+    private float gameTimer = 3f;
     void Start()
     {
         countdown = GetComponent<AudioSource>();
@@ -58,7 +59,6 @@ public class Gamemanager : MonoBehaviour
             reverseTimer = 3.5f;
             countDownText.gameObject.SetActive(false);
             gameTimer -= Time.deltaTime;
-            print(gameTimer);
         }
         
         if (startTimer)
@@ -114,12 +114,11 @@ public class Gamemanager : MonoBehaviour
         if (gameTimer <= 0)
         {
             GameOver();
-            enabled = false;
         }
 
         if (Input.GetKey(KeyCode.Escape))
         {
-            // Reset the game
+            ResetGame();
         }
     }
 
@@ -155,15 +154,15 @@ public class Gamemanager : MonoBehaviour
     {
         if (playerSide.score > botSide.score)
         {
-            gameOverText.text += "\nBot won!";
+            gameOverText.text = "Game Over!\nBot won!";
         }
         else if (playerSide.score < botSide.score)
         {
-            gameOverText.text += "\nYou won!";
+            gameOverText.text = "Game Over!\nYou won!";
         }
         else
         {
-            gameOverText.text += "\nTie!";
+            gameOverText.text = "Game Over!\nTie!";
         }
         gameOverText.gameObject.SetActive(true);
         canMove = false;
@@ -171,6 +170,18 @@ public class Gamemanager : MonoBehaviour
 
     void ResetGame()
     {
-        Application.res
+        string currentScene = "SampleScene";
+        // reverseTimer = 3.5f;
+        // gameTimer = 10f;
+        // playerSide.score = 0;
+        // botSide.score = 0;
+        // boostScript.boost = 30f;
+        // playerScoreText.text = botSide.score.ToString();
+        // botScoreText.text = playerSide.score.ToString();
+        // gameOverText.gameObject.SetActive(false);
+        //
+        // SpawnPosition();
+        
+        SceneManager.LoadScene(currentScene);
     }
 }
