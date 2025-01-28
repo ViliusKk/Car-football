@@ -6297,7 +6297,7 @@ MonoBehaviour:
   botScoreText: {fileID: 244812570}
   scoreText: {fileID: 1073491807}
   countDownText: {fileID: 1703617501}
-  timerText: {fileID: 1120333046}
+  gameTimerText: {fileID: 1120333046}
   gameOverText: {fileID: 1972281437}
   ball: {fileID: 1842498512}
   player: {fileID: 1048726833}

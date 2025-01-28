@@ -12,7 +12,7 @@ public class Gamemanager : MonoBehaviour
     public TMP_Text botScoreText;
     public TMP_Text scoreText;
     public TMP_Text countDownText;
-    public TMP_Text timerText;
+    public TMP_Text gameTimerText;
     public TMP_Text gameOverText;
     public Transform ball;
     public Transform player;
@@ -27,6 +27,7 @@ public class Gamemanager : MonoBehaviour
     private bool startTimer;
     private float startCountdownTimer;
     private float reverseTimer = 3.2f;
+    private float gameTimer = 10f;
     void Start()
     {
         countdown = GetComponent<AudioSource>();
@@ -37,6 +38,7 @@ public class Gamemanager : MonoBehaviour
     }
     void Update()
     {
+        gameTimerText.text = $"{Convert.ToInt32(gameTimer)/60}:{string.Format("{0:00}", Convert.ToInt32(gameTimer)%60)}";
         startCountdownTimer += Time.deltaTime;
         reverseTimer -= Time.deltaTime;
         if (startCountdownTimer >= 3f)
@@ -55,11 +57,14 @@ public class Gamemanager : MonoBehaviour
             startCountdownTimer = 0;
             reverseTimer = 3.5f;
             countDownText.gameObject.SetActive(false);
+            gameTimer -= Time.deltaTime;
+            print(gameTimer);
         }
         
         if (startTimer)
         {
             timer += Time.deltaTime;
+            gameTimer += Time.deltaTime;
         }
         boostText.text = Convert.ToInt32(boostScript.boost).ToString();
         if (playerSide.scored)
@@ -105,6 +110,17 @@ public class Gamemanager : MonoBehaviour
         {
             ResetPlayer();
         }
+        
+        if (gameTimer <= 0)
+        {
+            GameOver();
+            enabled = false;
+        }
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            // Reset the game
+        }
     }
 
     void SpawnPosition()
@@ -133,5 +149,28 @@ public class Gamemanager : MonoBehaviour
         bot.transform.position = new Vector3(269f, 0.85f, 288.85f);
         bot.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
         ball.transform.position = new Vector3(324.85f, 1.65f, 289f);
+    }
+
+    void GameOver()
+    {
+        if (playerSide.score > botSide.score)
+        {
+            gameOverText.text += "\nBot won!";
+        }
+        else if (playerSide.score < botSide.score)
+        {
+            gameOverText.text += "\nYou won!";
+        }
+        else
+        {
+            gameOverText.text += "\nTie!";
+        }
+        gameOverText.gameObject.SetActive(true);
+        canMove = false;
+    }
+
+    void ResetGame()
+    {
+        Application.res
     }
 }
