@@ -15,6 +15,7 @@ public class Gamemanager : MonoBehaviour
     public TMP_Text countDownText;
     public TMP_Text gameTimerText;
     public TMP_Text gameOverText;
+    public TMP_Text restartGameText;
     public Transform ball;
     public Transform player;
     public Rigidbody ballRb;
@@ -28,10 +29,12 @@ public class Gamemanager : MonoBehaviour
     private bool startTimer;
     private float startCountdownTimer;
     private float reverseTimer = 3.2f;
-    private float gameTimer = 3f;
+    private float gameTimer = 120f;
     void Start()
     {
         countdown = GetComponent<AudioSource>();
+        restartGameText.gameObject.SetActive(false);
+        gameOverText.gameObject.SetActive(false);
         SpawnPosition();
         playerScoreText.text = botSide.score.ToString();
         botScoreText.text = playerSide.score.ToString();
@@ -165,23 +168,13 @@ public class Gamemanager : MonoBehaviour
             gameOverText.text = "Game Over!\nTie!";
         }
         gameOverText.gameObject.SetActive(true);
+        restartGameText.gameObject.SetActive(true);
         canMove = false;
     }
 
     void ResetGame()
     {
         string currentScene = "SampleScene";
-        // reverseTimer = 3.5f;
-        // gameTimer = 10f;
-        // playerSide.score = 0;
-        // botSide.score = 0;
-        // boostScript.boost = 30f;
-        // playerScoreText.text = botSide.score.ToString();
-        // botScoreText.text = playerSide.score.ToString();
-        // gameOverText.gameObject.SetActive(false);
-        //
-        // SpawnPosition();
-        
         SceneManager.LoadScene(currentScene);
     }
 }
